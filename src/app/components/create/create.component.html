@@ -1,0 +1,53 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Task Details</label>
+        <input type="text" class="form-control" name="unit_name" formControlName="unit_name" #unit_name/>
+      </div>
+      <div *ngIf="angForm.controls['unit_name'].invalid && (angForm.controls['unit_name'].dirty || angForm.controls['unit_name'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['unit_name'].errors.required">
+          Task Details is required.
+        </div>
+      </div>
+       <div class="form-group">
+        <label class="col-md-4">Assigned Date</label>
+        <input type="date" class="form-control" name="adate" formControlName="adate" #adate/>
+      </div>
+     <!-- <div *ngIf="angForm.controls['task_detail'].invalid && (angForm.controls['task_detail'].dirty || angForm.controls['unit_name'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['task_detail'].errors.required">
+          Task Details is required.
+        </div>
+      </div> -->
+      <div class="form-group">
+        <label class="col-md-4">Unit Price</label>
+        <input type="text" class="form-control" name="unit_price" formControlName="unit_price" #unit_price/>
+      </div>
+      <div *ngIf="angForm.controls['unit_price'].invalid && (angForm.controls['unit_price'].dirty || angForm.controls['unit_price'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['unit_price'].errors.required">
+          Unit Price is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Comments</label>
+        <input type="text" class="form-control" name="comments" formControlName="comments" #comments/>
+      </div>
+      <div *ngIf="angForm.controls['comments'].invalid && (angForm.controls['comments'].dirty || angForm.controls['comments'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['comments'].errors.required">
+          Comments is required.
+        </div>
+      </div>
+      <div class="form-group">
+      <label class="col-md-6">Status</label>
+     <select  [(ngModel)]="selectedLevel">
+      
+      <option *ngFor="let level of levels" [ngValue]="level">{{level.name}}</option>
+       </select>
+       {{selectedLevel | json}}
+    </div>
+      <div class="form-group">
+        <button (click)="addAdUnit(unit_name.value, unit_price.value,adate.value, comments.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Create Unit</button>
+      </div>
+    </form>
+  </div>
+</div>
